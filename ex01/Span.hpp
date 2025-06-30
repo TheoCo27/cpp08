@@ -6,7 +6,7 @@
 /*   By: theog <theog@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 16:40:23 by theog             #+#    #+#             */
-/*   Updated: 2025/06/29 17:01:43 by theog            ###   ########.fr       */
+/*   Updated: 2025/06/30 14:41:25 by theog            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 #include <limits>
 #include <exception>
 #include <vector>
+#include <cstdlib>
 
-#define INT_MAX std::numeric_limits<unsigned int>::max()
 
 class Span
 {
     private:
         Span();
-        unsigned int _size;
+        unsigned int _size_max;
         std::vector<int> _vec;
     public:
         Span(unsigned int n);
@@ -31,18 +31,28 @@ class Span
         Span& operator=(const Span& copy);
         ~Span();
     //method
-        void addNumber(unsigned int to_add);
-        void floodSpan(unsigned int flood_size);
+        void addNumber(int to_add);
         unsigned int shortestSpan(void);
         unsigned int longestSpan(void);
         void printSpan(void);
+    template <typename T>
+    void AddRange(typename T::iterator begin, typename T::iterator end)
+    {
+        try{
+            (void)static_cast<int>(*begin);
+        }catch(...){
+            throw(std::invalid_argument("Add range requires type int"));
+        }
+        for(typename T::iterator it = begin; it != end; it++)
+            addNumber(*it);
+    }
 
-    class ImpossibleAdd : public std::exception
+    class TooMuchNb : public std::exception
     {
-        virtual const char* what() const throw();
+        const char* what() const throw(){return("Too Much Numbers");}
     };
-    class ImpossibleSpan : public std::exception
+    class TooFewNb : public std::exception
     {
-        virtual const char* what() const throw();
+        const char* what() const throw(){return("Too Few numbers");}
     };
 };

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theog <theog@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tcohen <tcohen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 16:40:23 by theog             #+#    #+#             */
-/*   Updated: 2025/06/30 14:41:25 by theog            ###   ########.fr       */
+/*   Updated: 2025/07/20 22:14:10 by tcohen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ class Span
             (void)static_cast<int>(*begin);
         }catch(...){
             throw(std::invalid_argument("Add range requires type int"));
+			return;
         }
         for(typename T::iterator it = begin; it != end; it++)
             addNumber(*it);

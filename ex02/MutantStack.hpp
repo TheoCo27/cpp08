@@ -6,11 +6,12 @@
 /*   By: tcohen <tcohen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 22:14:44 by tcohen            #+#    #+#             */
-/*   Updated: 2025/07/20 23:53:33 by tcohen           ###   ########.fr       */
+/*   Updated: 2025/08/14 16:39:08 by tcohen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
+#include <cstdlib>
 #include <iostream>
 #include <stack>
 
@@ -26,10 +27,10 @@ class MutantStack : public std::stack<T>
 
 	iterator begin(){return(this->c.begin());}
 	iterator end(){return(this->c.end());}
-	const_iterator cbegin(){return(this->c.cbegin());}
-	const_iterator cend(){return(this->c.cend());}
+	const_iterator cbegin() const {return(this->c.begin());}
+	const_iterator cend()const {return(this->c.end());}
 	reverse_iterator rbegin(){return(this->c.rbegin());}
 	reverse_iterator rend(){return(this->c.rend());}
-	const_reverse_iterator crbegin(){return(this->c.crbegin());}
-	const_reverse_iterator crend(){return(this->c.crend());}
+	const_reverse_iterator crbegin() const {return(this->c.rbegin());}
+	const_reverse_iterator crend() const {return(this->c.rend());}
 };

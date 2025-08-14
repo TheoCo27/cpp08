@@ -6,7 +6,7 @@
 /*   By: tcohen <tcohen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 22:14:37 by tcohen            #+#    #+#             */
-/*   Updated: 2025/07/20 23:53:38 by tcohen           ###   ########.fr       */
+/*   Updated: 2025/08/14 16:51:59 by tcohen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void constIteratorTests() {
         ms.push(i); // 1, 2, 3
 
     const MutantStack<int> &cms = ms; // Référence constante
-    for (MutantStack<int>::const_iterator it = cms.begin(); it != cms.end(); ++it) {
+    for (MutantStack<int>::const_iterator it = cms.cbegin(); it != cms.cend(); ++it) {
         std::cout << *it << " "; // Expected: 1 2 3
     }
     std::cout << std::endl;
@@ -79,7 +79,7 @@ void constReverseIteratorTests() {
 
     const MutantStack<int> &cms = ms; // Référence constante
     std::cout << "Iterating in reverse (const):" << std::endl;
-    for (MutantStack<int>::const_reverse_iterator rit = cms.rbegin(); rit != cms.rend(); ++rit) {
+    for (MutantStack<int>::const_reverse_iterator rit = cms.crbegin(); rit != cms.crend(); ++rit) {
         std::cout << *rit << " ";  // Expected: 50 40 30 20 10
     }
     std::cout << std::endl;
@@ -93,9 +93,10 @@ int main()
 	basicStackTests();
     iteratorTests();
     constIteratorTests();
+	reverseIteratorTests();
 	constReverseIteratorTests();
 
-	//SUBJECT TESTS
+	std::cout << "\n=== SUBJECT TESTS ===" << std::endl;
 	MutantStack<int> mstack;
 	mstack.push(5);
 	mstack.push(17);
